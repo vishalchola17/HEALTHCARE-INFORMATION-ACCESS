@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/endUser.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Management</h2>
+            <ul>
+                <li><a href="#precription">Precription</a></li>
+                <li><a href="#Test">Tests Reports</a></li>
+                <li><a href="{{url_for('viewHospitals', userId=userId)}}">View Hospitals</a></li>
+                <li>
+                    <form action="{{url_for('logout')}}" id="logout-btn">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form">
+        <div class="container-form">
+        <div class="search">
+            <form action="{{url_for('BloodDonation', userId=userId, who=0)}}" id="search-blood" method="post">
+                <input type="text" name="loc" id="loc" placeholder="Search Location For Blood">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <div class="per">
+            <form action="{{url_for('bloodPermision', userId=userId)}}" id="update-blood-btn" method="post">
+                <select name="permision" id="permision">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="True" >Yes</option>
+                    <option value="False">No</option>
+
+                </select>
+                <button type="submit">Done</button>
+            </form>
+            {% if bloodcon == True %}
+            <p>You've agreed to donte. edit it if you change your mind!</p>
+            {% else %}
+            <p>If you are free, edit option and donate blood</p>
+            {% endif %}
+        </div>
+    </div>
+    </section>
+    <section class="filter">
+       <div>
+            <!--<h5>filter by category</h5>-->
+            <form action="{{url_for('filterByCategory', userId=userId)}}" method="post">
+                <select name="category" id="category" required>
+                    <option value="" disabled selected>Filter Reports by Category</option>
+                    <option value="Blood Pressure">Blood Pressure</option>
+                    <option value="Sugar">Sugar</option>
+                    <option value="thyroid">thyroid</option>
+                    <option value="Dengue">Dengue</option>
+                    <option value="Blood Test">Blood Test</option>
+                    <option value="MRI scan">MRI scan</option>
+                    <option value="Xray">Xray</option>
+                </select>
+                <button type="submit">filter</button>
+            </form>
+        </div>
+    </section>
+
+    
+    <section class="reportss">
+    <div class="precription" id="precription">
+        <h1>precription</h1>
+       {% for image in images %}
+        {% if image.testPre == 0 %} 
+        <div class="main-report">
+            {% if 'pdf' in image.mimetype%}
+
+            <div class="file">
+                <embed class="main-file" src="{{ url_for('display_doc', id=image.id) }}" type="application/pdf" />
+            </div>
+            <div class="info-dw">
+                <p>{{ image.file_name }}</p>
+                <a href="{{ url_for('display_doc', id=image.id) }}" download>Download</a>
+            </div>
+            {% else %}
+            <!--<img src="{{ url_for('display_doc', id=image.id) }}" alt="pic" style="height: 50vh;">-->
+            <div class="file">
+                <img class="main-file" src="{{ url_for('display_doc', id=image.id) }}" alt="pic" ">
+            </div>
+            <div class="info-dw">
+                <p>{{ image.file_name }}</p>
+                <a href="{{ url_for('display_doc', id=image.id) }}" download>Download</a>
+            </div>
+            {% endif %}
+
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    </div>
+    <div class="Test" id="Test">
+        <h1>Test</h1>
+        {% for image in images %}
+        {% if image.testPre == 1 %} 
+        <div class="main-report">
+            {% if 'pdf' in image.mimetype%}
+            
+            <div class="file">
+                <!--<embed src="{{ url_for('display_doc', id=image.id) }}" type="application/pdf" />-->
+                <embed src="{{ url_for('display_doc', id=image.id) }}" type="application/pdf" />
+            </div>
+            <div class="info-dw">
+                <p>{{ image.file_name }}</p>
+                <!--<a href="{{ url_for('display_doc', id=image.id) }}" download>Download</a>-->
+                <a href="{{ url_for('display_doc', id=image.id) }}" download>Download</a>
+            </div>
+           {% else %}
+            <!--<img src="{{ url_for('display_doc', id=image.id) }}" alt="pic">-->
+            <div class="file">
+                <img src="{{ url_for('display_doc', id=image.id) }}" alt="pic" ">
+            </div>
+            <div class="info-dw">
+                <p>{{ image.file_name }}</p>
+                <a href="{{ url_for('display_doc', id=image.id) }}" download>Download</a>
+            </div>
+            {% endif %}
+
+        </div>
+                    {% endif %}
+        {% endfor %}
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Management</h2>
+        </nav>
+    </header>
+    <section class="main">
+        <div class="img-part">
+            <img src="/static/images/rb_8491.png" alt="" srcset="">
+        </div>
+        <div class="user-part">
+            <form action="{{ url_for('index') }}" method="post">
+                <input type="text" name="name" id="name" required placeholder="Enter your unique id">
+                <input type="password" name="password" id="password" required placeholder="Enter your password">
+                {% for category, message in get_flashed_messages(with_categories=True)%}
+                    <h4 class="alert">{{message}}</h4>
+                {% endfor %}
+                <div>
+                    <a href="/LoginAsAuth" id="opt">Login as auth</a>
+                </div>
+                <button type="submit">Get my history</button>
+            </form>
+        </div
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  --header1: calc(2rem + 1vw);
+  --header2: calc(3.5rem + 1vw);
+  --header3: calc(3rem + 1vw);
+  --header4: calc(2.4rem + 1vw);
+  --text: calc(1.5rem + 1vw);
+  --big: calc(2.4rem + 1vw);
+  --bigg: calc(5rem + 1vw);
+  --biggg: calc(15rem + 1vw);
+  --small:calc(0.5rem + 1vw);
+  --bg-color: #fffefe;
+  --gray-text: #2d2c2c;
+}
+
+body {
+  background: white;
+}
+
+header {
+  min-height: 10vh;
+  width: 100%;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+header nav {
+  min-height: 10vh;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+header nav a {
+  border: none;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  padding: calc(1rem + 1vw);
+  font-size: var(--small);
+}
+
+.form {
+  min-height: 40vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.form h1 {
+  font-size: var(--big);
+}
+.form form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+.form form input, .form form button {
+  width: calc(30% + 1vw);
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px black solid;
+  transition: 0.3s ease, transform 0.1s ease;
+}
+.form form input:hover {
+  transform: scale(1.02);
+}
+.form form button:hover {
+  transform: scale(1.02);
+  background-color: rgb(0, 155, 103);
+  color: white;
+  border: none;
+}
+
+.uploads {
+  min-height: 40vh;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--small);
+}
+.uploads .each-file {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+}
+.uploads .each-file .each-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.uploads .each-file .each-info p {
+  margin: 1rem;
+}
+.uploads .each-file .url {
+  display: flex;
+}
+.uploads .each-file .url a {
+  margin: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  border: 1px solid black;
+  color: black;
+  transition: 0.3s ease, transform 0.1s ease;
+}
+.uploads .each-file .url a:hover {
+  transform: scale(1.02);
+  background-color: rgb(0, 155, 103);
+  color: white;
+  border: none;
+}
+.uploads .each-file:hover {
+  transform: scale(1.02);
+}/*# sourceMappingURL=adder.css.map */

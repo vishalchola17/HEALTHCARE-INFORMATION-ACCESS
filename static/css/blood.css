@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  --header1: calc(2rem + 1vw);
+  --header2: calc(3.5rem + 1vw);
+  --header3: calc(3rem + 1vw);
+  --header4: calc(2.4rem + 1vw);
+  --text: calc(1.5rem + 1vw);
+  --big: calc(2.4rem + 1vw);
+  --bigg: calc(5rem + 1vw);
+  --biggg: calc(15rem + 1vw);
+  --small:calc(0.5rem + 1vw);
+  --bg-color: #fffefe;
+  --gray-text: #2d2c2c;
+}
+
+body {
+  background: white;
+}
+
+header {
+  min-height: 10vh;
+  width: 100%;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+header nav {
+  min-height: 10vh;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+header nav h2 {
+  flex: 1 1 40rem;
+  display: flex;
+  align-items: center;
+  font-size: var(--header4);
+}
+header nav ul {
+  flex: 1 2 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: var(--small);
+}
+header nav ul li {
+  list-style-type: none;
+  padding: 1rem;
+}
+header nav ul li a {
+  color: black;
+  transition: 0.3s ease, transform 0.1s ease;
+  text-decoration: none;
+}
+header nav ul li a:hover {
+  color: rgb(0, 155, 103);
+  transform: scale(1.5);
+}
+header nav ul li button {
+  width: 150%;
+  padding: 10%;
+  border: none;
+  font-size: var(--small);
+  color: white;
+  background-color: black;
+  transition: 0.3s ease, transform 0.1s ease;
+}
+header nav ul li button:hover {
+  transform: scale(1.5);
+  background-color: rgb(39, 155, 116);
+  color: white;
+  border: none;
+}
+header nav ul li:hover {
+  -webkit-text-decoration: dashed;
+          text-decoration: dashed;
+}
+
+.blood-con {
+  margin: 1rem;
+  font-size: var(--small);
+  width: 90%;
+  margin: auto;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.blood-con .main-info {
+  width: 100%;
+  margin: auto;
+}
+.blood-con .main-info .info {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15vh;
+  background-color: azure;
+}
+.blood-con .main-info .info p {
+  margin: 1rem;
+}
+.blood-con .main-info .info:hover {
+  border: black 1px solid;
+}
+
+.filter {
+  width: 100%;
+  height: 20vh;
+  background-color: black;
+}
+.filter div {
+  background-color: white;
+  width: 90%;
+  margin: auto;
+  height: 100%;
+}
+.filter div form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filter div form select {
+  width: 20%;
+  padding: 1.5rem;
+  margin: 1rem;
+}
+.filter div form button {
+  width: 5%;
+  padding: 1.5rem;
+  margin: 1rem;
+}
+.filter div form select, .filter div form button {
+  border: none;
+  transition: 0.3s ease, transform 0.1s ease;
+}
+.filter div form select:hover, .filter div form button:hover {
+  transform: scale(1.2);
+  background-color: azure;
+  border: black 1px solid;
+}/*# sourceMappingURL=blood.css.map */

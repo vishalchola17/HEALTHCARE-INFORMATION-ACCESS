@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+       <link rel="stylesheet" href="/static/css/HospitalDisplay.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h1>{{name}}</h1>
+        <div class="nav-divide">
+        <a href="{{url_for('BloodDonation', userId=Id, who=1)}}">View Blood Donors</a>
+        <a href="/logout">logout</a>
+    </div>
+    </nav>
+</header>
+<section class="form">
+    <form method="post" action="{{ url_for('hospital', name=name, Id=Id) }}" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" required>
+        <div class="group">
+            <label for="test">Test report?</label>
+            <select name="test" id="test">
+                <option value='true'>yes</option>
+                <option value='false'selected>no</option>
+            </select>
+        </div>
+
+       
+        <input placeholder="File Name" type="text" name="filename" id="filename" required>
+        <input placeholder="User's Unique Id" type="text" name="userId" id="userId" required>
+        <div class="group">
+            <label for="category">Category</label>
+            <select name="category" id="category" required>
+                <option value="" disabled selected>Select an Category</option>
+                <option value="Blood Pressure">Blood Pressure</option>
+                <option value="Sugar">Sugar</option>
+                <option value="thyroid">thyroid</option>
+                <option value="Dengue">Dengue</option>
+                <option value="Blood Test">Blood Test</option>
+                <option value="MRI scan">MRI scan</option>
+                <option value="Xray">Xray</option>
+            </select>
+        </div>
+        <button type="submit">upload</button>
+        {% for category, message in get_flashed_messages(with_categories=True)%}
+            <h4 class="alert">{{message}}</h4>
+        {% endfor %}
+    </form>
+</section>
+    <section class="uploads">
+    {% for file in files%} 
+            <div class="each-file">
+                <p>{{file.uploadDate}}</p>
+                <p>Test Report: {{file.testPre}}</p>
+                <p>{{file.userId}}</p>
+                <!--<p>{{file.id}}</p>-->
+              <div class="doc">
+            {% if 'pdf' in file.mimetype%} 
+                <embed class="main-doc" src="{{ url_for('display_doc', id=file.id) }}" type="application/pdf"/>
+             {% else %}
+                <img class="main-doc" src="{{ url_for('display_doc', id=file.id) }}" alt="pre">
+                {% endif %}
+            </div>
+            </div>
+        {%endfor%}
+    </section>
+
+</body>
+</html>

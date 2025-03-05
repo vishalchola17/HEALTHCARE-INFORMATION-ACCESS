@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Management</h2>
+        </nav>
+    </header>
+
+    <section class="main">
+        <div class="img-part">
+            <img src="/static/images/rb_835.png" alt="laptop-picture" srcset="">
+        </div>
+        <div class="user-part">
+            <form action="{{ url_for('LoginAsAuth') }}" method="post">
+                <input type="text" name="Id" id="Id" placeholder="Enter your id" required>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                <select name="hosAuth" id="hosAuth">
+                    <option value="" disabled selected>User type</option>
+                    <option value="Hospital">Hospital</option>
+                    <option value="Auth">Auth</option>
+                </select>
+              {% for category, message in get_flashed_messages(with_categories=True)%}
+                    <h4 class="alert alert-danger">{{message}}</h4>
+                {% endfor %}
+                <div>
+                    <a href="/" id="opt">Login as normal person</a>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

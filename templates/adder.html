@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/adder.css">
+</head>
+<body>
+    <header>
+    <nav>
+        <h1>Admin {{adderId}}</h1>
+        <a href="/logout">logout</a>
+    </nav>
+</header>
+<section class="form">
+    <h1>Add new hospital to database</h1>
+    <form method="post" action="{{ url_for('authority',Id=adderId) }}" enctype="multipart/form-data">
+        <input placeholder="New Hospital Id" type="text" name="hospitalId" id="hospitalId" required>
+        <input placeholder="Hospital Name" type="text" name="hospitalName" id="hospitalName" required>
+        <input placeholder="Hospital Location (city)" type="text" name="hospitalLoc" id="hospitalLoc" required>
+        <input placeholder="Password" type="password" name="password" id="password" required>
+        <input placeholder="Email" type="text" name="email" id="email" required>
+        <button type="submit">Add</button>
+        {% for category, message in get_flashed_messages(with_categories=True)%}
+            <h4 class="alert">{{message}}</h4>
+        {% endfor %}
+    </form>
+</section>
+<h1><center>Hospital Lists</center></h1>
+    <section class="uploads">
+       {% for data in info%}
+        
+            <div class="each-file">
+                <div class="each-info">
+                    <p>{{data.hospitalId}}</p>
+                    <p>{{data.hospitalName}}</p>
+                    <p>{{data.addedDate}}</p>
+                    <p>Added By {{data.adderId}}</p>
+                </div>
+                <div class="url">
+                    <a href="{{ url_for('adderOpreEdit', adderId=adderId, Id=data.hospitalId) }}" class="bt">Edit</a>
+                    <a href="{{ url_for('delete', adderId=adderId, Id=data.hospitalId) }}" class="bt">Delete</a>
+                </div>
+            </div>
+
+        {%endfor%}
+    </section>
+
+</body>
+</html>

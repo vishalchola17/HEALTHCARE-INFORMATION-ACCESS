@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/blood.css">
+
+</head>
+<body>
+
+<header>
+        <nav>
+            <h2>Management</h2>
+            <ul>
+                <li><a href="{{url_for('viewHospitals', userId=userId)}}">View Hospitals</a></li>
+            {% if currcent_user==1 %}
+                <li>
+                    <a href="{{url_for('hospital', name=name, Id=userId)}}">back to dashboard</a>
+                </li>
+            {%endif%}
+                <li>
+                    <form action="{{url_for('logout')}}" id="logout-btn">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+{% if currcent_user==1 %}
+<section class="filter">
+    <div>
+    <form method="post" action="{{url_for('BloodDonation', userId=userId, who=currcent_user)}}">
+        <select name="filter" id="filter">
+            <option value="" disabled selected>Select the blood group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </select>
+        <button type="submit">filter</button>
+    </form>
+</div>
+</section> 
+{% endif %}
+
+    <section class="blood-con" id="blood-con">
+        {% if available_users %}
+        <h1>Blood Contacts</h1>
+        {% endif %}
+        
+       {% if not available_users %}
+        <h1>not found</h1>
+        {% endif %}
+        <div class="main-info">
+        {% for user in available_users %}
+        <div class="info">
+            <p>{{ user.name }} </p>
+            <p>+91{{ user.number }} </p>
+            <p>{{ user.blood }} </p>
+            <p>{{ user.bloodLocCity }} </p>
+            <p>BloodDonation</p>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+</body>
+</html>

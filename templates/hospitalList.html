@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/hospitalList.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Management</h2>
+            <ul>
+                <li>
+                    <form action="{{url_for('logout')}}" id="logout-btn">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="search">
+        <div>
+        <form action="{{url_for('viewHospitals', userId=userId)}}" method="post">
+            <input type="text" name="searchLoc" id="searchLoc" placeholder="Search based on location">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    </section>
+    <section class="hospital-list">
+        {% for hospital in hospitalList%}
+        <div class="hospital-info">
+            <img src="/static/images/rb_10130.png" alt="">
+            <p><span style="font-weight: bold;">{{hospital.hospitalName}}</span>,{{hospital.hospitalLoc}}</p>
+            <p>{{hospital.email}}</p>
+            <p>{{hospital.phone}}</p>
+        </div>
+        {% endfor%}
+    </section>
+</body>
+</html>
